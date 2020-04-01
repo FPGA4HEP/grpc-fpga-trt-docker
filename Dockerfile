@@ -27,7 +27,7 @@ RUN git clone https://github.com/google/protobuf.git .
 RUN ./autogen.sh && ./configure && make -j 30 && make install
 
 WORKDIR /grpc/examples/grpc-trt-fgpa
-RUN git clone https://github.com/drankincms/grpc-trt-fgpa.git .
+RUN git clone https://github.com/FPGA4HEP/grpc-trt-fgpa -b alveo_facile .
 ENV PKG_CONFIG_PATH /usr/local/lib/pkgconfig
 
 RUN git submodule update --init
@@ -37,7 +37,7 @@ COPY xrt_201920.2.5.309_7.4.1708-x86_64-xrt.rpm /tmp/xrt_201920.2.5.309_7.4.1708
 RUN yum -y localinstall /tmp/xrt_201920.2.5.309_7.4.1708-x86_64-xrt.rpm
 RUN yum -y install boost-filesystem opencl-headers ocl-icd ocd-icd-devel clinfo
 
-RUN --mount=type=bind,target=/tools,source=/tools source /opt/xilinx/xrt/setup.sh && source /tools/xilinx/Vivado/2019.2/settings64.sh && make -j 16
+RUN --mount=type=bind,target=/xilinx,source=/xilinx source /opt/xilinx/xrt/setup.sh && source /xilinx/Vivado/2019.2/settings64.sh && make -j 16
 
 WORKDIR /grpc/examples/grpc-trt-fgpa/hls4ml_c
 

@@ -27,7 +27,7 @@ RUN git clone https://github.com/google/protobuf.git .
 RUN ./autogen.sh && ./configure && make -j 30 && make install
 
 ADD xrt_201920.2.5.309_7.4.1708-x86_64-xrt.rpm /tmp/xrt_201920.2.5.309_7.4.1708-x86_64-xrt.rpm
-RUN yum -y localinstall /tmp/xrt_201920.2.3.1301_7.4.1708-xrt.rpm
+RUN yum -y localinstall /tmp/xrt_201920.2.5.309_7.4.1708-x86_64-xrt.rpm 
 RUN yum -y install boost-filesystem opencl-headers ocl-icd ocd-icd-devel clinfo
 
 WORKDIR /grpc/examples/grpc-trt-fgpa

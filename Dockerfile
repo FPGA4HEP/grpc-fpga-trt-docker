@@ -36,7 +36,7 @@ ENV PKG_CONFIG_PATH /usr/local/lib/pkgconfig
 
 RUN git submodule update --init
 
-RUN --mount=type=bind,target=/xilinx,source=/xilinx source /opt/xilinx/xrt/setup.sh && source /xilinx/Vivado/2019.2/settings64.sh && make -j 16
+RUN --mount=type=bind,target=/xilinx,source=/xilinx source /opt/xilinx/xrt/setup.sh && source /xilinx/Vivado/2019.2/settings64.sh && make DEVICE=xilinx_u250_xdma_201830_2 HOST_ARCH=x86 SYSROOT='' -j 16
 
 WORKDIR /grpc/examples/grpc-trt-fgpa/hls4ml_c
 
